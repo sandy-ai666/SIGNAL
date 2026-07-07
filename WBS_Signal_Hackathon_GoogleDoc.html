@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WBS Signal Hackathon — Event Plan</title>
+<style>
+body { font-family: Arial, Helvetica, sans-serif; color: #333; line-height: 1.5; max-width: 900px; margin: 0 auto; padding: 16px; }
+h1 { color: #003B5C; font-size: 24px; text-align: center; margin-bottom: 2px; }
+.subtitle { text-align: center; color: #666; font-size: 12px; margin-bottom: 12px; }
+.badge { display: inline-block; background: #1F4E79; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: bold; margin: 2px; }
+h2 { color: #1F4E79; font-size: 18px; margin: 20px 0 8px; border-bottom: 2px solid #1F4E79; padding-bottom: 3px; }
+h2.mentor { color: #7B1FA2; border-bottom-color: #7B1FA2; }
+h2.judge { color: #5D4037; border-bottom-color: #5D4037; }
+h3 { color: #003B5C; font-size: 14px; margin: 14px 0 6px; }
+p, li { font-size: 13px; }
+.card { background: #F8F9FA; border: 1px solid #C0C0C0; border-radius: 6px; padding: 12px; margin-bottom: 14px; }
+.card-title { font-size: 14px; font-weight: bold; color: #003B5C; margin-bottom: 6px; }
+
+/* Mentor type colors */
+.type-ai { border-top: 3px solid #7B1FA2; }
+.type-biz { border-top: 3px solid #1565C0; }
+.type-resp { border-top: 3px solid #2E7D32; }
+.type-pit { border-top: 3px solid #E65100; }
+.tag-ai { background: #7B1FA2; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.tag-biz { background: #1565C0; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.tag-resp { background: #2E7D32; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.tag-pit { background: #E65100; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+
+.mentor-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+.mentor-card { background: #fff; border: 1px solid #C0C0C0; border-radius: 6px; padding: 10px; flex: 1; min-width: 220px; }
+.mentor-card .tag { margin-bottom: 4px; }
+.mentor-card .person { font-size: 12px; margin: 4px 0; padding: 4px 6px; background: #f0f0f0; border-radius: 4px; }
+
+.schedule-grid { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.schedule-slot { background: #fff; border: 1px solid #C0C0C0; border-radius: 6px; padding: 8px; flex: 1; min-width: 180px; text-align: center; }
+.schedule-slot .time { font-size: 12px; font-weight: bold; color: #003B5C; }
+.schedule-slot .phase { font-size: 10px; color: #888; }
+.schedule-slot .desc { font-size: 11px; color: #555; margin-top: 4px; padding: 4px; background: #f5f5f5; border-radius: 4px; }
+
+/* Judge perspective badges */
+.judge-academic { background: #5D4037; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.judge-onemundi { background: #0277BD; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.judge-enterprise { background: #C62828; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.judge-ai { background: #7B1FA2; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.judge-resp { background: #2E7D32; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+
+.criteria-grid { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.criteria-card { background: #fff; border: 1px solid #C0C0C0; border-radius: 6px; padding: 10px; border-left: 3px solid #5D4037; flex: 1; min-width: 180px; }
+.criteria-card .name { font-size: 13px; font-weight: bold; color: #003B5C; }
+.criteria-card .weight { font-size: 11px; color: #666; }
+.criteria-card .desc { font-size: 11px; color: #555; }
+
+/* Priority rows */
+.pri-high { background: #FCE4EC; }
+.pri-medium { background: #FFF3E0; }
+.pri-low { background: #E8F5E9; }
+.pri-badge-high { background: #C62828; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.pri-badge-medium { background: #E65100; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.pri-badge-low { background: #2E7D32; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; margin-bottom: 14px; }
+th { background: #1F4E79; color: #fff; font-weight: bold; padding: 5px 4px; text-align: left; border: 1px solid #C0C0C0; }
+td { padding: 4px 4px; border: 1px solid #C0C0C0; vertical-align: top; }
+.center { text-align: center; }
+a { color: #0A66C2; text-decoration: none; font-weight: 600; }
+a:hover { text-decoration: underline; }
+.linkedin-icon { display: inline-block; width: 14px; height: 14px; background: #0A66C2; border-radius: 2px; color: #fff; font-size: 9px; line-height: 14px; text-align: center; font-weight: bold; }
+
+.footer { text-align: center; margin-top: 20px; padding: 10px; color: #888; font-size: 11px; border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+
+<h1>WBS Signal Hackathon</h1>
+<p class="subtitle">Event Plan — Mentor Structure · Judging Panel · Outreach Strategic List</p>
+<p style="text-align:center"><span class="badge">🇬🇧🇪🇺 EU / UK Focus — Offline Event</span></p>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 1: MENTOR STRUCTURE               -->
+<!-- ══════════════════════════════════════════ -->
+<h2 class="mentor">Section 1 — Mentor Structure (8 Mentors)</h2>
+
+<div class="card">
+<div class="card-title">🧭 Mentor Philosophy</div>
+<p>Mentors should <strong>not sit permanently with one team</strong>. Instead, they rotate across teams at scheduled checkpoints. This gives teams support without making mentors do the work for them.</p>
+</div>
+
+<h3>🧑‍🏫 Mentor Types &amp; Assignments</h3>
+
+<div class="mentor-grid">
+<!-- AI / Technology -->
+<div class="mentor-card type-ai">
+<div class="tag"><span class="tag-ai">AI / Technology × 2</span></div>
+<p style="font-size:11px;color:#555;margin:2px 0">Help teams think about AI tools, feasibility, and workflow</p>
+<div class="person"><strong>Raj Kaur Khaira</strong> — Co-Founder &amp; Deputy Global CEO, AutogenAI · <a href="https://uk.linkedin.com/in/raj-khaira" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+<div class="person"><strong>Bhavesh Vaghela</strong> — CPTO &amp; AI, London Marathon Events / Ethita · <a href="https://uk.linkedin.com/in/bhaveshvaghela" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+</div>
+<!-- Business / Strategy -->
+<div class="mentor-card type-biz">
+<div class="tag"><span class="tag-biz">Business / Strategy × 2</span></div>
+<p style="font-size:11px;color:#555;margin:2px 0">Help teams assess value, implementation, and commercial logic</p>
+<div class="person"><strong>Louise Ainsworth</strong> — CEO EMEA, Kantar (Chair, WBS GAB) · <a href="https://uk.linkedin.com/in/louiseainsworth" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+<div class="person"><strong>Jessica Rasmussen</strong> — CEO &amp; Co-Founding Partner, Two Magnolies · <a href="https://uk.linkedin.com/in/jessica-rasmussen" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+</div>
+<!-- Responsible AI / Data -->
+<div class="mentor-card type-resp">
+<div class="tag"><span class="tag-resp">Responsible AI / Data × 2</span></div>
+<p style="font-size:11px;color:#555;margin:2px 0">Help teams identify risks, ethics, privacy, and governance issues</p>
+<div class="person"><strong>Prof. Hila Lifshitz-Assaf</strong> — Director, AIIN; Professor, WBS · <a href="https://www.linkedin.com/in/dr-h-hila-lifshitz-h%C3%A1n-x%E4%B9%9F-311a1a5" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+<div class="person"><strong>Keith Bedell-Pearce CBE</strong> — Chairman, 4D Data Centres Ltd · <a href="https://uk.linkedin.com/in/keith-bedell-pearce-ab2228129" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+</div>
+<!-- Pitch / Storytelling -->
+<div class="mentor-card type-pit">
+<div class="tag"><span class="tag-pit">Pitch / Storytelling × 2</span></div>
+<p style="font-size:11px;color:#555;margin:2px 0">Help teams communicate clearly and prepare final presentations</p>
+<div class="person"><strong>Stef Calcraft</strong> — Global CEO, EssenceMediacom (WPP) · <a href="https://www.linkedin.com/search/results/all/?keywords=Stef+Calcraft+EssenceMediacom" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+<div class="person"><strong>Sanjiv Patel</strong> — Regional Chair UK &amp; Europe, WBS Global Alumni Network · <a href="https://uk.linkedin.com/in/sanjivspeaks" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></div>
+</div>
+</div>
+
+<h3>📅 Mentor Rotation Schedule</h3>
+<div class="schedule-grid">
+<div class="schedule-slot">
+<div class="time">Friday Evening</div>
+<div class="phase">Challenge Kick-off</div>
+<div class="desc">Challenge understanding check-in — AI &amp; Biz mentors rotate to each team to probe problem framing</div>
+<div style="margin-top:4px"><span class="tag-ai" style="font-size:9px">AI</span> <span class="tag-biz" style="font-size:9px">BIZ</span></div>
+</div>
+<div class="schedule-slot">
+<div class="time">Saturday Morning</div>
+<div class="phase">Solution Building</div>
+<div class="desc">Early solution feedback — AI &amp; Responsible AI mentors review feasibility &amp; risk flags</div>
+<div style="margin-top:4px"><span class="tag-ai" style="font-size:9px">AI</span> <span class="tag-resp" style="font-size:9px">RESP</span></div>
+</div>
+<div class="schedule-slot">
+<div class="time">Saturday Afternoon</div>
+<div class="phase">Viability Testing</div>
+<div class="desc">Viability stress-test — Biz &amp; Responsible AI mentors challenge value &amp; ethics assumptions</div>
+<div style="margin-top:4px"><span class="tag-biz" style="font-size:9px">BIZ</span> <span class="tag-resp" style="font-size:9px">RESP</span></div>
+</div>
+<div class="schedule-slot">
+<div class="time">Sunday Morning</div>
+<div class="phase">Final Prep</div>
+<div class="desc">Final pitch feedback — Pitch mentors help teams polish presentations for judging</div>
+<div style="margin-top:4px"><span class="tag-pit" style="font-size:9px">PITCH</span></div>
+</div>
+</div>
+
+<h3>Mentor Detail Table</h3>
+<table>
+<thead><tr><th>#</th><th>Name</th><th>Contact</th><th>Type</th><th>Company</th><th>Title</th><th>Why?</th><th>Checkpoints</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td><strong>Raj Kaur Khaira</strong></td><td><a href="https://uk.linkedin.com/in/raj-khaira" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-ai">AI / Tech</span></td><td>AutogenAI</td><td>Co-Founder &amp; Deputy Global CEO</td><td>Co-founded UK's fastest-growing AI company; deep practical AI expertise; WBS alumna</td><td>Fri eve + Sat morn</td><td>Not Contacted</td></tr>
+<tr><td class="center">2</td><td><strong>Bhavesh Vaghela</strong></td><td><a href="https://uk.linkedin.com/in/bhaveshvaghela" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-ai">AI / Tech</span></td><td>London Marathon Events / Ethita</td><td>CPTO &amp; AI</td><td>WBS MBA; Barclays→TSB→Callsign→London Marathon; AI transformation leader</td><td>Fri eve + Sat morn</td><td>Not Contacted</td></tr>
+<tr><td class="center">3</td><td><strong>Louise Ainsworth</strong></td><td><a href="https://uk.linkedin.com/in/louiseainsworth" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-biz">Biz / Strategy</span></td><td>Kantar</td><td>CEO EMEA (Chair, WBS GAB)</td><td>Chair of WBS GAB; senior exec at Kantar; business strategy expertise</td><td>Fri eve + Sat aft</td><td>Not Contacted</td></tr>
+<tr><td class="center">4</td><td><strong>Jessica Rasmussen</strong></td><td><a href="https://uk.linkedin.com/in/jessica-rasmussen" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-biz">Biz / Strategy</span></td><td>Two Magnolies</td><td>CEO &amp; Co-Founding Partner</td><td>UK-based VC fund CEO; GAB member; invests in early-stage UK startups</td><td>Fri eve + Sat aft</td><td>Not Contacted</td></tr>
+<tr><td class="center">5</td><td><strong>Prof. Hila Lifshitz-Assaf</strong></td><td><a href="https://www.linkedin.com/in/dr-h-hila-lifshitz-h%C3%A1n-x%E4%B9%9F-311a1a5" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-resp">Resp AI / Data</span></td><td>WBS AIIN</td><td>Director, AIIN; Professor</td><td>Director of AIIN; leading researcher on AI transformation &amp; responsible innovation</td><td>Sat morn + Sat aft</td><td>Not Contacted</td></tr>
+<tr><td class="center">6</td><td><strong>Keith Bedell-Pearce CBE</strong></td><td><a href="https://uk.linkedin.com/in/keith-bedell-pearce-ab2228129" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-resp">Resp AI / Data</span></td><td>4D Data Centres Ltd</td><td>Chairman &amp; Senior Independent Director</td><td>CBE honouree; data infrastructure governance expert; GAB member; Warwick Council</td><td>Sat morn + Sat aft</td><td>Not Contacted</td></tr>
+<tr><td class="center">7</td><td><strong>Stef Calcraft</strong></td><td><a href="https://www.linkedin.com/search/results/all/?keywords=Stef+Calcraft+EssenceMediacom" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-pit">Pitch / Story</span></td><td>EssenceMediacom (WPP)</td><td>Global CEO</td><td>Global CEO of major media/tech agency; storytelling &amp; presentation expert; GAB member</td><td>Sun morn</td><td>Not Contacted</td></tr>
+<tr><td class="center">8</td><td><strong>Sanjiv Patel</strong></td><td><a href="https://uk.linkedin.com/in/sanjivspeaks" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td><span class="tag-pit">Pitch / Story</span></td><td>WBS Global Alumni Network</td><td>Regional Chair, UK &amp; Europe</td><td>Keynote speaker; 8-year Mentoring Committee Chair; presentation coaching</td><td>Sun morn</td><td>Not Contacted</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 2: JUDGING PANEL                  -->
+<!-- ══════════════════════════════════════════ -->
+<h2 class="judge">Section 2 — Judging Panel (5 Judges)</h2>
+
+<div class="card">
+<div class="card-title">⚖️ Judging Philosophy</div>
+<p>The panel includes <strong>5 judges</strong> representing different perspectives, assessing teams on <strong>7 criteria</strong>.</p>
+</div>
+
+<h3>👨‍⚖️ Judge Composition</h3>
+<table>
+<thead><tr><th>#</th><th>Perspective</th><th>Name</th><th>Contact</th><th>Company / Role</th><th>Why?</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td><strong>WBS Academic / Faculty</strong> <span class="judge-academic">Academic</span></td><td><strong>Prof. Ram Gopal</strong></td><td><a href="https://www.wbs.ac.uk/about/person/ram-gopal/" target="_blank">🔗 WBS Page</a></td><td>Director, WBS Gilmore Centre for FinTech</td><td>Director of Gilmore Centre; leads FinTech research &amp; industry partnerships; key academic authority</td><td>Not Contacted</td></tr>
+<tr><td class="center">2</td><td><strong>OneMundi / Richard Rep</strong> <span class="judge-onemundi">OneMundi</span></td><td><strong>Richard (WBS/OneMundi)</strong></td><td>Internal — WBS Alumni Office</td><td>WBS / OneMundi representative</td><td>Organisational sponsor &amp; connector; represents hackathon's institutional anchor</td><td>Not Contacted</td></tr>
+<tr><td class="center">3</td><td><strong>Enterprise Partner</strong> <span class="judge-enterprise">Enterprise</span></td><td><strong>Maya Prabhu</strong></td><td><a href="https://uk.linkedin.com/in/maya-prabhu-b0660649" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Head of Wealth Advisory EMEA, JP Morgan</td><td>Senior finance exec at top-tier global bank; GAB member; enterprise perspective on commercial viability</td><td>Not Contacted</td></tr>
+<tr><td class="center">4</td><td><strong>AI / Technology Expert</strong> <span class="judge-ai">AI Expert</span></td><td><strong>Eraj Rostaqi</strong></td><td><a href="https://uk.linkedin.com/in/eraj-rostaqi-mba-77682031" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Co-Founder, Velominati AI</td><td>WBS MBA &amp; AI startup founder; deep practical AI knowledge; AI for financial/regulatory data</td><td>Not Contacted</td></tr>
+<tr><td class="center">5</td><td><strong>Responsible Innovation / Biz Strategy</strong> <span class="judge-resp">Resp Biz</span></td><td><strong>Yewande Akinola MBE</strong></td><td><a href="https://uk.linkedin.com/in/yewande-akinola-mbe-fiet-honfreng-78888518" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Innovate UK Ambassador</td><td>Innovate UK Ambassador; connects to UK gov innovation ecosystem; GAB member; evaluates responsible innovation</td><td>Not Contacted</td></tr>
+</tbody>
+</table>
+
+<h3>📋 Judging Criteria &amp; Scoring Rubric</h3>
+<div class="criteria-grid">
+<div class="criteria-card">
+<div class="name">1. Clarity of Problem Understanding</div>
+<div class="weight">Weight: 15%</div>
+<div class="desc">Did the team clearly define the problem? Specific, measurable, relevant?</div>
+</div>
+<div class="criteria-card">
+<div class="name">2. Quality of AI Use</div>
+<div class="weight">Weight: 20%</div>
+<div class="desc">Is AI genuinely useful, technically sound, appropriately integrated? Beyond superficial use?</div>
+</div>
+<div class="criteria-card">
+<div class="name">3. Business Value</div>
+<div class="weight">Weight: 15%</div>
+<div class="desc">Does the solution create real business/societal value? Clear value proposition and target market?</div>
+</div>
+<div class="criteria-card">
+<div class="name">4. Feasibility</div>
+<div class="weight">Weight: 10%</div>
+<div class="desc">Can this realistically be implemented? Technical, operational, and resource feasibility.</div>
+</div>
+<div class="criteria-card">
+<div class="name">5. Responsible AI &amp; Risk Awareness</div>
+<div class="weight">Weight: 15%</div>
+<div class="desc">Did they identify ethical risks, data privacy, bias, governance issues? Mitigation strategies?</div>
+</div>
+<div class="criteria-card">
+<div class="name">6. Implementation Roadmap</div>
+<div class="weight">Weight: 10%</div>
+<div class="desc">Credible plan to production? Timeline, milestones, dependencies, next steps?</div>
+</div>
+<div class="criteria-card">
+<div class="name">7. Quality of Final Presentation</div>
+<div class="weight">Weight: 15%</div>
+<div class="desc">Was the pitch clear, compelling, well-structured? Effective communication within time constraints?</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 3: HIGH PRIORITY CONTACTS          -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 3 — High Priority Contacts</h2>
+<table>
+<thead><tr><th>No.</th><th>Name</th><th>Contact/LinkedIn</th><th>Company</th><th>Title</th><th>Industry</th><th>Value</th><th>Role(s)</th><th>Source</th><th>Channel</th><th>Pri</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr class="pri-high"><td class="center">1</td><td>Maya Prabhu</td><td><a href="https://uk.linkedin.com/in/maya-prabhu-b0660649" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>JP Morgan Private Bank</td><td>Head of Wealth Advisory EMEA</td><td>Finance / Wealth Mgmt</td><td>Senior finance exec at top-tier global bank; WBS GAB member</td><td>Judge + Industry Partner + Sponsor</td><td>WBS GAB + Imad</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>GAB member. ⭐ Judge (Enterprise Partner).</td></tr>
+<tr class="pri-high"><td class="center">2</td><td>Matthew Hanmer</td><td><a href="https://uk.linkedin.com/in/matthew-hanmer-0664194a" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Mastercard</td><td>VP, Global Credit Product Management</td><td>Fintech / Payments</td><td>VP at global payments leader; GAB member</td><td>Judge + Industry Partner + Problem Statement</td><td>WBS GAB + Imad</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>GAB member. Mastercard sponsor &amp; problem statement.</td></tr>
+<tr class="pri-high"><td class="center">3</td><td>Clive Gillmore</td><td><a href="https://www.linkedin.com/search/results/all/?keywords=Clive+Gillmore+Mondrian+Investment" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Mondrian Investment Partners</td><td>Founder, Group CEO &amp; CIO</td><td>Investment Mgmt</td><td>Founder &amp; CEO of global asset management firm; Major WBS donor (£3M + £1.25M)</td><td>Judge + Sponsor + Guest Speaker</td><td>WBS Gilmore Centre</td><td>WBS Philanthropy Office</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>London-based. Key sponsor target.</td></tr>
+<tr class="pri-high"><td class="center">4</td><td>Raj Kaur Khaira</td><td><a href="https://uk.linkedin.com/in/raj-khaira" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>AutogenAI</td><td>Co-Founder &amp; Deputy Global CEO</td><td>AI / GenAI / SaaS</td><td>Co-founded UK's fastest-growing AI company; London AI Campus Board; Warwick alumna</td><td>⭐ Mentor(AI) + Judge + Guest Speaker</td><td>WBS Alumni / London Tech Week</td><td>LinkedIn InMail or WBS Founders Hub</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ AI/Technology Mentor #1.</td></tr>
+<tr class="pri-high"><td class="center">5</td><td>Louise Ainsworth</td><td><a href="https://uk.linkedin.com/in/louiseainsworth" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Kantar</td><td>CEO EMEA, Media Division (Chair, WBS GAB)</td><td>Data / Analytics / Media</td><td>Chair of WBS GAB; Senior exec at Kantar; Former CEO of Warc</td><td>⭐ Mentor(Biz) + Judge + Guest Speaker</td><td>WBS GAB</td><td>WBS Dean's Office</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ Business/Strategy Mentor #1.</td></tr>
+<tr class="pri-high"><td class="center">6</td><td>Stef Calcraft</td><td><a href="https://www.linkedin.com/search/results/all/?keywords=Stef+Calcraft+EssenceMediacom" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>EssenceMediacom (WPP)</td><td>Global CEO</td><td>Media / Tech / Advertising</td><td>Global CEO of major media/tech agency; GAB member</td><td>⭐ Mentor(Pitch) + Judge + Industry Partner</td><td>WBS GAB</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ Pitch/Storytelling Mentor #1.</td></tr>
+<tr class="pri-high"><td class="center">7</td><td>Prof. Ram Gopal</td><td><a href="https://www.wbs.ac.uk/about/person/ram-gopal/" target="_blank">🔗 WBS Page</a></td><td>WBS Gilmore Centre for FinTech</td><td>Director, Gilmore Centre for FinTech</td><td>Fintech / Academic</td><td>Director of Gilmore Centre; Direct connection to Barclays, JP Morgan; Key academic advisor</td><td>⭐ Judge(Academic) + Mentor + Problem Statement</td><td>Imad + WBS Gilmore</td><td>Direct introduction via WBS</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ Judge (WBS Academic/Faculty).</td></tr>
+<tr class="pri-high"><td class="center">8</td><td>Prof. Hila Lifshitz-Assaf</td><td><a href="https://www.linkedin.com/in/dr-h-hila-lifshitz-h%C3%A1n-x%E4%B9%9F-311a1a5" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>WBS AIIN</td><td>Director, AIIN; Professor of Information Systems</td><td>AI / Academic / Research</td><td>Director of AIIN; Connects AIIN with industry partners; Leading AI transformation researcher</td><td>⭐ Mentor(Resp AI) + Judge + Industry Partner Connector</td><td>WBS AIIN Page</td><td>Direct introduction via WBS</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ Responsible AI/Data Mentor #1.</td></tr>
+<tr class="pri-high"><td class="center">9</td><td>Eraj Rostaqi</td><td><a href="https://uk.linkedin.com/in/eraj-rostaqi-mba-77682031" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Velominati AI</td><td>Co-Founder (WBS MBA Alumnus)</td><td>AI / Fintech / RegTech</td><td>WBS MBA alumnus &amp; AI startup founder; AI for financial/regulatory data</td><td>⭐ Judge(AI Expert) + Mentor + Industry Partner</td><td>Imad + WBS Founders Hub</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ Judge (AI/Technology Expert).</td></tr>
+<tr class="pri-high"><td class="center">10</td><td>Bhavesh Vaghela</td><td><a href="https://uk.linkedin.com/in/bhaveshvaghela" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>London Marathon Events / Ethita</td><td>CPTO &amp; AI (WBS MBA)</td><td>AI / Technology / Sports</td><td>WBS MBA; CPTO &amp; AI at London Marathon; Former Barclays, TSB, Callsign</td><td>⭐ Mentor(AI) + Judge + Guest Speaker</td><td>WBS MBA Alumni Conference 2025</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-high">High</span></td><td>Not Contacted</td><td>⭐ AI/Technology Mentor #2.</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 4: MEDIUM PRIORITY CONTACTS        -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 4 — Medium Priority Contacts</h2>
+<table>
+<thead><tr><th>No.</th><th>Name</th><th>Contact/LinkedIn</th><th>Company</th><th>Title</th><th>Industry</th><th>Value</th><th>Role(s)</th><th>Source</th><th>Channel</th><th>Pri</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr class="pri-medium"><td class="center">11</td><td>Andy Hardy</td><td><a href="https://uk.linkedin.com/in/profandyhardy" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>UHCW NHS Trust (Coventry)</td><td>Chief Executive Officer</td><td>Healthcare / Public Sector</td><td>CEO of major NHS Trust; GAB member; Healthcare + AI intersection</td><td>Guest Speaker + Industry Partner</td><td>WBS GAB + Imad</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>Coventry-based (near WBS campus).</td></tr>
+<tr class="pri-medium"><td class="center">12</td><td>Yewande Akinola MBE</td><td><a href="https://uk.linkedin.com/in/yewande-akinola-mbe-fiet-honfreng-78888518" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Innovate UK</td><td>Innovate UK Ambassador</td><td>Innovation / Tech / Engineering</td><td>Innovate UK Ambassador; GAB member; MBE honouree</td><td>⭐ Judge(Resp Biz) + Guest Speaker + Industry Partner</td><td>WBS GAB</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>⭐ Judge (Responsible Innovation/Biz Strategy).</td></tr>
+<tr class="pri-medium"><td class="center">13</td><td>Keith Bedell-Pearce CBE</td><td><a href="https://uk.linkedin.com/in/keith-bedell-pearce-ab2228129" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>4D Data Centres Ltd</td><td>Chairman &amp; Senior Independent Director</td><td>Data Infrastructure / Tech</td><td>Chairman of data centre company; CBE; GAB member; Warwick Council member</td><td>⭐ Mentor(Resp AI) + Judge + Industry Partner</td><td>WBS GAB</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>⭐ Responsible AI/Data Mentor #2.</td></tr>
+<tr class="pri-medium"><td class="center">14</td><td>Jessica Rasmussen</td><td><a href="https://uk.linkedin.com/in/jessica-rasmussen" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Two Magnolies</td><td>CEO &amp; Co-Founding Partner</td><td>VC / Investment / Sustainability</td><td>CEO of UK-based VC fund; GAB member; Invests in early-stage UK startups</td><td>⭐ Mentor(Biz) + Judge + Sponsor Connector</td><td>WBS GAB</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>⭐ Business/Strategy Mentor #2.</td></tr>
+<tr class="pri-medium"><td class="center">15</td><td>Bryn Davies</td><td><a href="https://uk.linkedin.com/in/bryndaviesmba" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Independent (Former Proximie)</td><td>Strategic Advisor (HealthTech / AI)</td><td>HealthTech / AI / Strategy</td><td>WBS MBA Alumni Award 2024; Former Chief of Strategy, Proximie; Advises AI health startups</td><td>Mentor + Judge + Industry Partner</td><td>WBS Alumni Awards 2024</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>London-based. Strong mentor candidate.</td></tr>
+<tr class="pri-medium"><td class="center">16</td><td>Prof. Simon Barnes</td><td><a href="https://uk.linkedin.com/in/simon-barnes-5663ba15" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>WBS (Founders Hub)</td><td>Professor of VC Finance; Assistant Dean</td><td>VC / Entrepreneurship</td><td>Leads WBS Founders Hub at The Shard; 25-year VC career; Connected to WBS startups</td><td>Mentor + Judge + Industry Partner Connector</td><td>WBS Staff Directory</td><td>Direct introduction via WBS</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>Key internal contact. VC &amp; startup network.</td></tr>
+<tr class="pri-medium"><td class="center">17</td><td>Jenny Tooth OBE</td><td><a href="https://uk.linkedin.com/in/jenny-tooth-obe-9bb4908" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>UKBAA</td><td>Executive Chair</td><td>Angel Investment / VC / Startups</td><td>Executive Chair of UKBAA — 15,000+ angel investors; Keynote at WBS MBA Conference 2025</td><td>Guest Speaker + Mentor + Sponsor Connector</td><td>WBS MBA Alumni Conference 2025</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>London-based. UKBAA connects to UK angel ecosystem.</td></tr>
+<tr class="pri-medium"><td class="center">18</td><td>Sanjiv Patel</td><td><a href="https://uk.linkedin.com/in/sanjivspeaks" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>WBS Global Alumni Network</td><td>Regional Chair, UK &amp; Europe</td><td>Leadership / Consulting</td><td>Regional Chair — 37,000+ alumni access; Keynote speaker; 8-year Mentoring Committee Chair</td><td>⭐ Mentor(Pitch) + Guest Speaker</td><td>WBS GAB Regional Chairs</td><td>WBS Alumni Office or LinkedIn InMail</td><td class="center"><span class="pri-badge-medium">Medium</span></td><td>Not Contacted</td><td>⭐ Pitch/Storytelling Mentor #2.</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 5: LOWER PRIORITY CONTACTS         -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 5 — Lower Priority Contacts</h2>
+<table>
+<thead><tr><th>No.</th><th>Name</th><th>Contact/LinkedIn</th><th>Company</th><th>Title</th><th>Industry</th><th>Value</th><th>Role(s)</th><th>Source</th><th>Channel</th><th>Pri</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr class="pri-low"><td class="center">19</td><td>Alexandre Duval</td><td><a href="https://fr.linkedin.com/in/alexandre-duval-b00531128" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Entalpic</td><td>Co-Founder &amp; CSO</td><td>AI / Climate Tech</td><td>Warwick alumnus; AI startup (£7M+ funding); AI for materials science</td><td>Mentor + Industry Partner</td><td>Warwick Press</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-low">Low</span></td><td>Not Contacted</td><td>Paris-based (EU).</td></tr>
+<tr class="pri-low"><td class="center">20</td><td>Andy Palmer</td><td><a href="https://www.linkedin.com/search/results/all/?keywords=Andy+Palmer+Aston+Martin+CEO+Warwick" target="_blank"><span class="linkedin-icon">in</span> LinkedIn</a></td><td>Formerly Aston Martin / Switch Mobility</td><td>Former CEO (Aston Martin)</td><td>Automotive / EV / Technology</td><td>Warwick alumnus; 'Godfather of EV' — led Nissan Leaf; Former CEO Aston Martin</td><td>Guest Speaker (Fireside Chat) + Mentor</td><td>Warwick Notable Alumni</td><td>LinkedIn InMail</td><td class="center"><span class="pri-badge-low">Low</span></td><td>Not Contacted</td><td>UK-based. High-profile name, star power.</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 6: ROLE COVERAGE SUMMARY           -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 6 — Role Coverage Summary</h2>
+<table>
+<thead><tr><th>Hackathon Role</th><th>Target</th><th>Assigned</th><th>Candidate Names</th></tr></thead>
+<tbody>
+<tr><td><strong>Mentors — AI/Technology</strong></td><td class="center">2</td><td class="center">2 ✓</td><td>Raj Kaur Khaira · Bhavesh Vaghela</td></tr>
+<tr><td><strong>Mentors — Business/Strategy</strong></td><td class="center">2</td><td class="center">2 ✓</td><td>Louise Ainsworth · Jessica Rasmussen</td></tr>
+<tr><td><strong>Mentors — Responsible AI/Data</strong></td><td class="center">2</td><td class="center">2 ✓</td><td>Hila Lifshitz-Assaf · Keith Bedell-Pearce CBE</td></tr>
+<tr><td><strong>Mentors — Pitch/Storytelling</strong></td><td class="center">2</td><td class="center">2 ✓</td><td>Stef Calcraft · Sanjiv Patel</td></tr>
+<tr><td><strong>Judge — WBS Academic</strong></td><td class="center">1</td><td class="center">1 ✓</td><td>Prof. Ram Gopal</td></tr>
+<tr><td><strong>Judge — OneMundi/Richard</strong></td><td class="center">1</td><td class="center">1 (TBD)</td><td>Richard — confirm identity</td></tr>
+<tr><td><strong>Judge — Enterprise Partner</strong></td><td class="center">1</td><td class="center">1 ✓</td><td>Maya Prabhu (JP Morgan)</td></tr>
+<tr><td><strong>Judge — AI Expert</strong></td><td class="center">1</td><td class="center">1 ✓</td><td>Eraj Rostaqi (Velominati AI)</td></tr>
+<tr><td><strong>Judge — Resp Innovation/Biz</strong></td><td class="center">1</td><td class="center">1 ✓</td><td>Yewande Akinola MBE (Innovate UK)</td></tr>
+<tr><td><strong>Industry Partners</strong></td><td class="center">3–5</td><td class="center">5</td><td>JP Morgan · Mastercard · AutogenAI · Mondrian · Velominati AI</td></tr>
+<tr><td><strong>Guest Speakers</strong></td><td class="center">2–3</td><td class="center">5</td><td>Ainsworth · Vaghela · Tooth OBE · Hardy · Patel</td></tr>
+<tr><td><strong>Problem Statements</strong></td><td class="center">3–5</td><td class="center">4</td><td>Mastercard · JP Morgan · Velominati AI · Gilmore Centre</td></tr>
+<tr><td><strong>Sponsors</strong></td><td class="center">2–3</td><td class="center">4</td><td>Mondrian · Mastercard · JP Morgan · UKBAA</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 7: OUTREACH CHANNEL STRATEGY       -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 7 — Outreach Channel Strategy</h2>
+<table>
+<thead><tr><th>Type</th><th>Name</th><th>Description</th><th>Best For</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>Online</td><td>LinkedIn</td><td>Search alumni by company/title → InMail</td><td>Direct outreach</td><td>Hackathon team</td></tr>
+<tr><td>Online</td><td>LinkedIn WBS Alumni Groups</td><td>Join groups → Browse → Filter by industry</td><td>Discovering &amp; vetting</td><td>Hackathon team</td></tr>
+<tr><td>School</td><td>WBS Alumni Office</td><td>Richard has direct access — formal invitations</td><td>GAB members, donors</td><td>Richard</td></tr>
+<tr><td>School</td><td>WBS Philanthropy Office</td><td>Direct relationship — intro to major donors</td><td>Top donors (Gillmore)</td><td>Richard</td></tr>
+<tr><td>School</td><td>Gilmore Centre for FinTech</td><td>Prof. Gopal connects to Barclays, JP Morgan</td><td>FinTech partners</td><td>Prof. Gopal</td></tr>
+<tr><td>School</td><td>AIIN</td><td>Prof. Lifshitz-Assaf connects to AI industry partners</td><td>AI-focused partners</td><td>Prof. Lifshitz-Assaf</td></tr>
+<tr><td>School</td><td>WBS Founders Hub</td><td>Prof. Barnes introduces startups &amp; VC contacts</td><td>Entrepreneur mentors</td><td>Prof. Barnes</td></tr>
+<tr><td>School</td><td>WBS Dean's Office</td><td>Formal institutional invitation for VIPs</td><td>GAB Chair, keynote</td><td>WBS Dean / Richard</td></tr>
+<tr><td>Offline</td><td>WBS at The Shard</td><td>Host pre-hackathon networking event</td><td>Sponsors in person</td><td>Hackathon team</td></tr>
+<tr><td>Offline</td><td>WBS UK/EU Alumni Events</td><td>Attend regional networking events</td><td>Face-to-face meetings</td><td>Hackathon team</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 8: RESEARCH SOURCES                -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 8 — Research Sources</h2>
+<table>
+<thead><tr><th>#</th><th>Source</th><th>URL</th><th>Extracted</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td>WBS Global Advisory Board</td><td>wbs.ac.uk/about/people/the-board/</td><td>Full board: names, companies, titles</td></tr>
+<tr><td class="center">2</td><td>WBS Gilmore Centre for FinTech</td><td>wbs.ac.uk/research/centres/gilmore-centre/</td><td>Industry partners, Director, donor</td></tr>
+<tr><td class="center">3</td><td>WBS AIIN</td><td>aii-network.org</td><td>Director, AI industry partners</td></tr>
+<tr><td class="center">4</td><td>WBS Alumni Showcase</td><td>wbs.ac.uk/alumni/alumni-stories/</td><td>Bryn Davies, notable alumni</td></tr>
+<tr><td class="center">5</td><td>WBS Founders Hub / Staff</td><td>wbs.ac.uk</td><td>Prof. Simon Barnes, Eraj Rostaqi</td></tr>
+<tr><td class="center">6</td><td>WBS MBA Alumni Conference 2025</td><td>online.flippingbook.com/view/1514635/</td><td>Bhavesh Vaghela, Jenny Tooth OBE</td></tr>
+<tr><td class="center">7</td><td>WBS Alumni Awards 2024</td><td>wbs.ac.uk/news</td><td>Bryn Davies Award</td></tr>
+<tr><td class="center">8</td><td>Warwick Press</td><td>warwick.ac.uk/newsandevents/</td><td>Alexandre Duval (Entalpic)</td></tr>
+<tr><td class="center">9</td><td>LinkedIn Search</td><td>linkedin.com</td><td>Verified profile URLs</td></tr>
+<tr><td class="center">10</td><td>Tracxn</td><td>tracxn.com</td><td>1,330 startups, 6 unicorns, $19B</td></tr>
+</tbody>
+</table>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 9: IMAD'S CORRECTIONS              -->
+<!-- ══════════════════════════════════════════ -->
+<h2>Section 9 — Imad's Corrections</h2>
+<table>
+<thead><tr><th>#</th><th>Original</th><th>Corrected</th><th>Company</th><th>Title</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="center">1</td><td>Maya Prabhu</td><td>Maya Prabhu ✓</td><td>JP Morgan Private Bank ✓</td><td>Head of Wealth Advisory EMEA ✓</td><td>No correction. London-based.</td></tr>
+<tr><td class="center">2</td><td>Matthew Hanmer</td><td>Matthew Hanmer ✓</td><td>Mastercard ✓</td><td>VP, Global Credit Product Mgmt ✓</td><td>No correction.</td></tr>
+<tr><td class="center">3</td><td>Andy Hardy</td><td>Andy Hardy ✓</td><td>UHCW NHS Trust ✓</td><td>CEO ✓</td><td>No correction. Coventry-based.</td></tr>
+<tr><td class="center">4</td><td>Ahmed Kaushal</td><td><strong>Amit Kaushal</strong></td><td>Dubai Holding ✓</td><td>Group CEO ✓</td><td>Name corrected. Removed: Dubai-based.</td></tr>
+<tr><td class="center">5</td><td>Raj Rostaki</td><td><strong>Eraj Rostaqi</strong></td><td><strong>Velominati AI</strong></td><td>Co-Founder ✓</td><td>Name &amp; company corrected.</td></tr>
+<tr><td class="center">6</td><td>Ram Gopal</td><td>Prof. Ram Gopal ✓</td><td>WBS Gilmore Centre ✓</td><td>Director ✓</td><td>No correction. Professor, not alumni.</td></tr>
+</tbody>
+</table>
+
+<!-- FOOTER -->
+<div class="footer">
+<p><strong>WBS Signal Hackathon — Event Plan &amp; Outreach Strategic List</strong> (EU/UK)</p>
+<p>July 2026 · Contacts: 20 · Mentors: 8 · Judges: 5</p>
+</div>
+
+</body>
+</html>
